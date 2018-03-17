@@ -10,6 +10,8 @@ class App
 	Window * appWindow;
 	// Настройки приложения
 	Settings appSettings;
+	// Рендерер окна
+	SDL_Renderer * windowRenderer;
 	// Работает ли приложение
 	bool running = true;
 

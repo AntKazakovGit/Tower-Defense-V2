@@ -11,9 +11,10 @@ App::App()
 			"Tower Defense", 
 			appSettings.width, 
 			appSettings.height, 
-			appSettings.screenMode, 
-			appSettings.VSync
+			appSettings.screenMode
 		);
+	// Создание рендерера на основе окна
+	windowRenderer = appWindow->CreateWindowRenderer(appSettings.VSync);
 	// Выполнение приложения
 	this->Execution();
 }

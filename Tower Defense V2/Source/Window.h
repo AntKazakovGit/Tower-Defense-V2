@@ -7,14 +7,13 @@
 class Window
 {
 	SDL_Window * window;
-	SDL_Renderer * windowRenderer;
 
 public:
-	Window(std::string title, int width, int height, Uint32 windowMode, bool VSync);
+	Window(std::string title, int width, int height, Uint32 windowMode);
 	~Window();
 	// Изменение настроек окна
-	void SetWindowSettings(int width, int height, Uint32 windowMode, bool VSync);
+	void SetWindowSettings(int width, int height, Uint32 windowMode);
 	// Возвращает ссылку на рендерер окна
-	SDL_Renderer * GetWindowRenderer();
+	SDL_Renderer * CreateWindowRenderer(bool VSync);
 
 };
