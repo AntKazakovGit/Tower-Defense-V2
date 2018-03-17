@@ -1,12 +1,15 @@
 ﻿#pragma once
 
 #include "Window.h"
+#include "Settings.h"
 
 
 class App
 {
 	// Окно приложения
-	Window appWindow;
+	Window * appWindow;
+	// Настройки приложения
+	Settings appSettings;
 	// Работает ли приложение
 	bool running = true;
 
