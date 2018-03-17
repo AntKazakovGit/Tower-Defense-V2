@@ -21,5 +21,7 @@ class App
 public:
 	App();
 	~App();
+	// Обработка SDL событий
+	void SDLEventsHandling(SDL_Event * appEvent);
 
 };

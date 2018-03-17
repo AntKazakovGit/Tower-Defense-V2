@@ -25,14 +25,27 @@ App::~App()
 	SaveSettings(appSettings);
 }
 
+void App::SDLEventsHandling(SDL_Event * appEvent)
+{
+	while (SDL_PollEvent(appEvent))
+	{
+		switch (appEvent->type)
+		{
+		case SDL_EventType::SDL_QUIT:
+			running = false;
+			break;
+
+		}
+	}
+}
+
 void App::Execution()
 {
 	SDL_Event appEvent;
 	while (running)
 	{
-		while (SDL_PollEvent(&appEvent))
-		{
+		// Обработка SDL событий окна
+		SDLEventsHandling(&appEvent);
 
-		}
 	}
 }
