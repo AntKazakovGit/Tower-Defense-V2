@@ -4,7 +4,16 @@ void App::Execution()
 {
 	while (running)
 	{
+		// Обработка событий
 		SDL_EventHandling();
+		// Выполнение сцены
+		appScene->Execution();
+		// Очистка поверхности
+		SDL_RenderClear(appRenderer);
+		// Отображение объектов на поверхности
+		appScene->RenderObjects();
+		// Отображение поверхности
+		SDL_RenderPresent(appRenderer);
 	}
 }
 
