@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <SDL.h>
 #include <vector>
@@ -12,13 +12,13 @@ protected:
 public:
 	Scene(SDL_Renderer * renderer);
 	~Scene();
-	// Возвращает список ссылок на отображаемые объекты
+	// Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє СЃСЃС‹Р»РѕРє РЅР° РѕС‚РѕР±СЂР°Р¶Р°РµРјС‹Рµ РѕР±СЉРµРєС‚С‹
 	std::vector<Object*> GetDisplayedObjects();
-	// Выполнение сцены		
+	// Р’С‹РїРѕР»РЅРµРЅРёРµ СЃС†РµРЅС‹		
 	virtual void Execution();
 
-	// Обработка нажатия мыши
+	// РћР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ РјС‹С€Рё
 	virtual void OnMouseClick(SDL_MouseButtonEvent buttonEvent);
-	// Обработка движения мыши
+	// РћР±СЂР°Р±РѕС‚РєР° РґРІРёР¶РµРЅРёСЏ РјС‹С€Рё
 	virtual void OnMouseMotion(SDL_MouseMotionEvent motionEvent);
 };

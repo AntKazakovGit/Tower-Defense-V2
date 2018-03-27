@@ -1,4 +1,4 @@
-#include "Object.h"
+﻿#include "Object.h"
 
 Object::Object(SDL_Texture * objTexture, SDL_Rect objStartPosition) :
 	objTexture(objTexture),

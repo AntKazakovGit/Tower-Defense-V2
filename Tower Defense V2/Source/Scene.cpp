@@ -1,4 +1,4 @@
-#include "Scene.h"
+﻿#include "Scene.h"
 
 Scene::Scene(SDL_Renderer * renderer)
 {

@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <SDL.h>
 
@@ -9,11 +9,11 @@ protected:
 	SDL_Texture * objTexture;
 	SDL_Rect objPosition;
 public:
-	// Создание текстуры с массштабированием размеров
+	// РЎРѕР·РґР°РЅРёРµ С‚РµРєСЃС‚СѓСЂС‹ СЃ РјР°СЃСЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµРј СЂР°Р·РјРµСЂРѕРІ
 	Object(SDL_Texture * objTexture, SDL_Rect objStartPosition);
-	// Создание текстуры без масштабирования размеров
+	// РЎРѕР·РґР°РЅРёРµ С‚РµРєСЃС‚СѓСЂС‹ Р±РµР· РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ СЂР°Р·РјРµСЂРѕРІ
 	Object(SDL_Texture * objTexture, int x = 0, int y = 0);
 	~Object();
-	// Отображение объекта на поверхности
+	// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕР±СЉРµРєС‚Р° РЅР° РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
 	void RenderObject(SDL_Renderer * renderer);
 };
