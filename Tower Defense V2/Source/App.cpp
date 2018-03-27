@@ -23,7 +23,7 @@ void App::SDL_EventHandling()
 	while (SDL_PollEvent(&appEvent))
 	{
 		// Обработка выхода из программы
-		if (appEvent.type = SDL_EventType::SDL_QUIT)
+		if (appEvent.type == SDL_EventType::SDL_QUIT)
 			running = false;
 		if (appScene)
 		{
@@ -48,6 +48,10 @@ void App::RenderObjects()
 	SDL_RenderClear(appRenderer);
 	// Отображение объектов на поверхности
 	std::vector<Object*> displayedObjects = appScene->GetDisplayedObjects();
+	for (int i = 0; i < displayedObjects.size(); i++)
+	{
+		displayedObjects[i]->RenderObject(appRenderer);
+	}
 	// Отображение поверхности
 	SDL_RenderPresent(appRenderer);
 }
