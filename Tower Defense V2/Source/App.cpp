@@ -1,5 +1,29 @@
 ﻿#include "App.h"
 
+void App::Execution()
+{
+	while (running)
+	{
+		SDL_EventHandling();
+	}
+}
+
+void App::SDL_EventHandling()
+{
+	SDL_Event appEvent;
+	// Поиск событий
+	while (SDL_PollEvent(&appEvent))
+	{
+		switch (appEvent.type)
+		{
+			// Обработка выхода из приложения
+		case SDL_EventType::SDL_QUIT:
+			running = false;
+			break;
+		}
+	}
+}
+
 App::App()
 {
 	// Создание окна приложения
@@ -22,6 +46,8 @@ App::App()
 			SDL_RendererFlags::SDL_RENDERER_ACCELERATED | 
 			SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
 		);
+	// Выполнение приложения
+	this->Execution();
 }
 
 App::~App()
