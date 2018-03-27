@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <SDL.h>
+#include "Scene.h"
 
 
 class App
@@ -11,11 +12,16 @@ class App
 	SDL_Renderer * appRenderer;
 	// Работает ли приложение
 	bool running = true;
+	// Сценарий (действия которые будут происходить в приложении) приложения
+	Scene * appScene;
+
 	// Выполнение работы приложения
 	void Execution();
 	// Обработка SDL событий
 	void SDL_EventHandling();
+
 public:
 	App();
 	~App();
+
 };
