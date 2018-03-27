@@ -2,20 +2,22 @@
 
 #include <SDL.h>
 #include <vector>
+#include "Object.h"
 
 
 class Scene
 {
 protected:
 	SDL_Renderer * renderer;
+	std::vector<Object*> displayedObjects;
 public:
 	Scene(SDL_Renderer * renderer);
 	~Scene();
-	// Возвращает список ссылок на объекты которые требуется вывести на экран
-	//virtual std::vector<Object*> GetDisplayedObjects;
+	// Вывод объектов на экран
+	void RenderObjects();
 	// Выполнение сцены		
 	virtual void Execution();
-
+/*
 	// Обработка клика ЛКМ
 	virtual void OnLButtonClick();
 	// Обработка двойного клика ЛКМ
@@ -30,4 +32,5 @@ public:
 	virtual void OnMButtonDoubleClick();
 	// Обработка движения мыши
 	virtual void OnMouseMotion();
-}
+*/
+};
