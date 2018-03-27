@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include "Scene.h"
+#include "Game.h"
 
 
 class App

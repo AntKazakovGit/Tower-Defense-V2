@@ -78,6 +78,7 @@ App::App()
 			SDL_RendererFlags::SDL_RENDERER_ACCELERATED | 
 			SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
 		);
+	appScene = new Game(appRenderer);
 	// Выполнение приложения
 	this->Execution();
 }
