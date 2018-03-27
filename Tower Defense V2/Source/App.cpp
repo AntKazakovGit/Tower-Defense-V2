@@ -10,12 +10,8 @@ void App::Execution()
 		{
 			// Выполнение сцены
 			appScene->Execution();
-			// Очистка поверхности
-			SDL_RenderClear(appRenderer);
-			// Отображение объектов на поверхности
-			appScene->RenderObjects();
-			// Отображение поверхности
-			SDL_RenderPresent(appRenderer);
+			// Обновление поверхности окна
+			RenderObjects();
 		}
 	}
 }
@@ -26,14 +22,34 @@ void App::SDL_EventHandling()
 	// Поиск событий
 	while (SDL_PollEvent(&appEvent))
 	{
-		switch (appEvent.type)
-		{
-			// Обработка выхода из приложения
-		case SDL_EventType::SDL_QUIT:
+		// Обработка выхода из программы
+		if (appEvent.type = SDL_EventType::SDL_QUIT)
 			running = false;
-			break;
+		if (appScene)
+		{
+			switch (appEvent.type)
+			{
+				// Обработка нажатия мыши
+			case SDL_EventType::SDL_MOUSEBUTTONDOWN:
+				appScene->OnMouseClick(appEvent.button);
+				break;
+				// Обработка движения мыши
+			case SDL_EventType::SDL_MOUSEMOTION:
+				appScene->OnMouseMotion(appEvent.motion);
+				break;
+			}
 		}
 	}
+}
+
+void App::RenderObjects()
+{
+	// Очистка поверхности
+	SDL_RenderClear(appRenderer);
+	// Отображение объектов на поверхности
+	std::vector<Object*> displayedObjects = appScene->GetDisplayedObjects();
+	// Отображение поверхности
+	SDL_RenderPresent(appRenderer);
 }
 
 App::App()

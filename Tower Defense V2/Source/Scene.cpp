@@ -7,17 +7,26 @@ Scene::Scene(SDL_Renderer * renderer)
 
 Scene::~Scene()
 {
+
 }
 
-void Scene::RenderObjects()
+std::vector<Object*> Scene::GetDisplayedObjects()
 {
-	for (int i = 0; i < displayedObjects.size(); i++)
-	{
-		displayedObjects[i]->RenderObject(renderer);
-	}
+	// virtual
+	return std::vector<Object*>();
 }
 
 void Scene::Execution()
+{
+	// virtual
+}
+
+void Scene::OnMouseClick(SDL_MouseButtonEvent buttonEvent)
+{
+	// virtual
+}
+
+void Scene::OnMouseMotion(SDL_MouseMotionEvent motionEvent)
 {
 	// virtual
 }

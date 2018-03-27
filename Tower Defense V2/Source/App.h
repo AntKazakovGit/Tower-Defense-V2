@@ -19,6 +19,8 @@ class App
 	void Execution();
 	// Обработка SDL событий
 	void SDL_EventHandling();
+	// Отображение объектов
+	void RenderObjects();
 
 public:
 	App();
