@@ -6,14 +6,17 @@ void App::Execution()
 	{
 		// Обработка событий
 		SDL_EventHandling();
-		// Выполнение сцены
-		appScene->Execution();
-		// Очистка поверхности
-		SDL_RenderClear(appRenderer);
-		// Отображение объектов на поверхности
-		appScene->RenderObjects();
-		// Отображение поверхности
-		SDL_RenderPresent(appRenderer);
+		if (appScene)
+		{
+			// Выполнение сцены
+			appScene->Execution();
+			// Очистка поверхности
+			SDL_RenderClear(appRenderer);
+			// Отображение объектов на поверхности
+			appScene->RenderObjects();
+			// Отображение поверхности
+			SDL_RenderPresent(appRenderer);
+		}
 	}
 }
 
@@ -63,4 +66,5 @@ App::~App()
 {
 	SDL_DestroyRenderer(appRenderer);
 	SDL_DestroyWindow(appWindow);
+	delete appScene;
 }
