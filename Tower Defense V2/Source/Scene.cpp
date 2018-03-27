@@ -1,7 +1,8 @@
 #include "Scene.h"
 
-Scene::Scene()
+Scene::Scene(SDL_Renderer * renderer)
 {
+
 }
 
 Scene::~Scene()
