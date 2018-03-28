@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <iostream>
+#include <SDL_image.h>
 #include "Scene.h"
 
 
@@ -21,8 +23,6 @@ class Game :
 public:
 	Game(SDL_Renderer * renderer);
 	~Game();
-	// Возвращает список отоброжаемых объектов
-	std::vector<Object*> GetDisplayedObjects();
 	// Выполнение сцены
 	void Execution();
 	// Обработка нажатия мыши

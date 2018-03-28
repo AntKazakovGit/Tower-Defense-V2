@@ -9,6 +9,7 @@ class Scene
 {
 protected:
 	SDL_Renderer * renderer;
+	std::vector<Object*> displayedObject;
 public:
 	Scene(SDL_Renderer * renderer);
 	~Scene();

@@ -1,6 +1,7 @@
 ﻿#include "Scene.h"
 
-Scene::Scene(SDL_Renderer * renderer)
+Scene::Scene(SDL_Renderer * renderer) :
+	renderer(renderer)
 {
 
 }
@@ -12,8 +13,7 @@ Scene::~Scene()
 
 std::vector<Object*> Scene::GetDisplayedObjects()
 {
-	// virtual
-	return std::vector<Object*>();
+	return displayedObject;
 }
 
 void Scene::Execution()
