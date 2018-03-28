@@ -3,6 +3,8 @@
 #include <iostream>
 #include <SDL_image.h>
 #include "Scene.h"
+#include "Tower.h"
+#include "Enemy.h"
 
 
 class Game :
@@ -15,11 +17,11 @@ class Game :
 	// Золото героя
 	int gold;
 	// Карта уровня
-	Object * gameMap;
+	Object * topPanel;
 	// Список врагов
-
+	std::vector<Enemy*> enemies;
 	// Список башен
-
+	std::vector<std::vector<Tower*>> towers;
 public:
 	Game(SDL_Renderer * renderer);
 	~Game();

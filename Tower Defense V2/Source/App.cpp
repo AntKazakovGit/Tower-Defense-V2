@@ -85,7 +85,5 @@ App::App()
 
 App::~App()
 {
-	SDL_DestroyRenderer(appRenderer);
-	SDL_DestroyWindow(appWindow);
-	delete appScene;
+
 }
