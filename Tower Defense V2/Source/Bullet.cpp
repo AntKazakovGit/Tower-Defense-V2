@@ -19,7 +19,7 @@ bool Bullet::Hit()
 	{
 		std::cout << "Hello";
 	}
-	if (objPosition.x == target->GetCurrentPosition().x && objPosition.y == target->GetCurrentPosition().y)
+	if (sqrt(pow(target->GetCurrentPosition().x - objPosition.x, 2) + pow(target->GetCurrentPosition().y - objPosition.y, 2)) <= objPosition.w / 2)
 	{
 		target->Damaged(damage);
 		return true;
