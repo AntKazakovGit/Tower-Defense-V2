@@ -9,6 +9,8 @@ Game::Game(SDL_Renderer * renderer) :
 	gameTextures.push_back(IMG_LoadTexture(renderer, "Resources/TowerTileSet.png"));
 	// Загрузка текстуры врагов
 	gameTextures.push_back(IMG_LoadTexture(renderer, "Resources/Enemy.png"));
+	// Загрузка текстуры снаряда
+	gameTextures.push_back(IMG_LoadTexture(renderer, "Resources/Bullet.png"));
 	topPanel = new Object(gameTextures[0]);
 	// Типы тайлов на карте
 	char map[11][17] =
@@ -31,9 +33,9 @@ Game::Game(SDL_Renderer * renderer) :
 		for (int j = 0; j < 11; j++)
 		{
 			if (map[j][i] == '0')
-				towers[i].push_back(new Tower(gameTextures[1], i * 50, j * 50 + 50, TileType::EmptyTile));
+				towers[i].push_back(new Tower(gameTextures[1], gameTextures[3], i * 50, j * 50 + 50, TileType::EmptyTile));
 			if (map[j][i] == '1')
-				towers[i].push_back(new Tower(gameTextures[1], i * 50, j * 50 + 50, TileType::RoadTile));
+				towers[i].push_back(new Tower(gameTextures[1], gameTextures[3], i * 50, j * 50 + 50, TileType::RoadTile));
 
 		}
 		std::cout << std::endl;
@@ -81,6 +83,13 @@ void Game::Execution()
 				std::cout << "Castle damaged, health remaining: " << castleHealth << std::endl;
 			}
 		}
+		for (int i = 0; i < 16; i++)
+		{
+			for (int j = 0; j < 11; j++)
+			{
+				towers[i][j]->Shoot(enemies);
+			}
+		}
 	}
 	displayedObject.clear();
 	if (topPanel)
@@ -89,7 +98,6 @@ void Game::Execution()
 	}
 	for (int i = 0; i < 16; i++)
 	{
-		towers.push_back(std::vector<Tower*>());
 		for (int j = 0; j < 11; j++)
 		{
 			displayedObject.push_back(towers[i][j]);

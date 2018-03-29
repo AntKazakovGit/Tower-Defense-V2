@@ -63,3 +63,16 @@ bool Enemy::Complete()
 		return true;
 }
 
+SDL_Rect Enemy::GetCurrentPosition()
+{
+	return objPosition;
+}
+
+void Enemy::Damaged(int damage)
+{
+	if (health > damage)
+		health -= damage;
+	else
+		health = 0;
+}
+

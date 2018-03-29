@@ -33,4 +33,6 @@ public:
 	~Enemy();
 	void Move();
 	bool Complete();
+	SDL_Rect GetCurrentPosition();
+	void Damaged(int damage);
 };
