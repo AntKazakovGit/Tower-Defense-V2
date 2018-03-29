@@ -32,7 +32,7 @@ void Object::RenderObject(SDL_Renderer * renderer)
 	(
 		renderer, 
 		objTexture, 
-		NULL, 
+		srcRect, 
 		&objPosition
 	);
 }

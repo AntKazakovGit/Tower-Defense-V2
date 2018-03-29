@@ -10,13 +10,33 @@ Game::Game(SDL_Renderer * renderer) :
 	// Загрузка текстуры врагов
 	gameTextures.push_back(IMG_LoadTexture(renderer, "Resources/"));
 	topPanel = new Object(gameTextures[0]);
+	// Типы тайлов на карте
+	char map[11][17] =
+	{
+		"0000000000000000",
+		"0000000000000000",
+		"0000000000000000",
+		"1111111100000000",
+		"0000000100000000",
+		"0000000100000000",
+		"0000000100000000",
+		"0000000111111111",
+		"0000000000000000",
+		"0000000000000000",
+		"0000000000000000",
+	};
 	for (int i = 0; i < 16; i++)
 	{
 		towers.push_back(std::vector<Tower*>());
 		for (int j = 0; j < 11; j++)
 		{
-			towers[i].push_back(new Tower(gameTextures[1], i * 50, j * 50 + 50));
+			if (map[j][i] == '0')
+				towers[i].push_back(new Tower(gameTextures[1], i * 50, j * 50 + 50, TileType::EmptyTile));
+			if (map[j][i] == '1')
+				towers[i].push_back(new Tower(gameTextures[1], i * 50, j * 50 + 50, TileType::RoadTile));
+
 		}
+		std::cout << std::endl;
 	}
 }
 
@@ -47,5 +67,6 @@ void Game::Execution()
 
 void Game::OnMouseClick(SDL_MouseButtonEvent buttonEvent)
 {
-
+	if (buttonEvent.y > 50)
+			towers[buttonEvent.x / 50][buttonEvent.y / 50 - 1]->Upgrade(&gold);
 }

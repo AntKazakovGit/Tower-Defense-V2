@@ -15,7 +15,7 @@ class Game :
 	// Здоровье крепости
 	int castleHealth;
 	// Золото героя
-	int gold;
+	int gold = 100;
 	// Карта уровня
 	Object * topPanel;
 	// Список врагов

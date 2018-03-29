@@ -8,6 +8,7 @@ class Object
 protected:
 	SDL_Texture * objTexture;
 	SDL_Rect objPosition;
+	SDL_Rect * srcRect;
 public:
 	// Создание текстуры с массштабированием размеров
 	Object(SDL_Texture * objTexture, SDL_Rect objStartPosition);
