@@ -137,6 +137,9 @@
     <ClInclude Include="Source\Scene.h" />
     <ClInclude Include="Source\Tower.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Enemy.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

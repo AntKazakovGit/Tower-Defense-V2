@@ -8,7 +8,7 @@ Game::Game(SDL_Renderer * renderer) :
 	// Загрузка текстуры башен
 	gameTextures.push_back(IMG_LoadTexture(renderer, "Resources/TowerTileSet.png"));
 	// Загрузка текстуры врагов
-	gameTextures.push_back(IMG_LoadTexture(renderer, "Resources/"));
+	gameTextures.push_back(IMG_LoadTexture(renderer, "Resources/Enemy.png"));
 	topPanel = new Object(gameTextures[0]);
 	// Типы тайлов на карте
 	char map[11][17] =
@@ -38,6 +38,11 @@ Game::Game(SDL_Renderer * renderer) :
 		}
 		std::cout << std::endl;
 	}
+	paths.push_back({ Path::Directions::Right, 400 });
+	paths.push_back({ Path::Directions::Bottom, 200 });
+	paths.push_back({ Path::Directions::Right, 450 });
+	std::cout << "Current gold: " << gold << std::endl;
+	std::cout << "Castle health: " << castleHealth << std::endl;
 }
 
 Game::~Game()
@@ -46,6 +51,33 @@ Game::~Game()
 
 void Game::Execution()
 {
+	if (castleHealth > 0)
+	{
+		if (enemies.empty() && enemyRemains == 0)
+		{
+			Wave += 1;
+			enemyRemains = 5 * Wave;
+			respawnDelay -= 10;
+		}
+		if (SDL_GetTicks() - lastRespawnTime >= respawnDelay && enemyRemains != 0)
+		{
+			enemyRemains -= 1;
+			enemies.push_back(new Enemy(gameTextures[2], spawnX, spawnY, paths));
+			lastRespawnTime = SDL_GetTicks();
+		}
+		// Перемещение противников
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			enemies[i]->Move();
+			if (enemies[i]->Complete())
+			{
+				delete enemies[i];
+				castleHealth -= 1;
+				enemies.erase(enemies.begin() + i);
+				std::cout << "Castle damaged, current health: " << castleHealth << std::endl;
+			}
+		}
+	}
 	displayedObject.clear();
 	if (topPanel)
 	{
@@ -67,6 +99,9 @@ void Game::Execution()
 
 void Game::OnMouseClick(SDL_MouseButtonEvent buttonEvent)
 {
-	if (buttonEvent.y > 50)
+	if (castleHealth > 0)
+	{
+		if (buttonEvent.y > 50)
 			towers[buttonEvent.x / 50][buttonEvent.y / 50 - 1]->Upgrade(&gold);
+	}
 }
