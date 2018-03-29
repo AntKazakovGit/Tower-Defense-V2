@@ -41,8 +41,6 @@ Game::Game(SDL_Renderer * renderer) :
 	paths.push_back({ Path::Directions::Right, 400 });
 	paths.push_back({ Path::Directions::Bottom, 200 });
 	paths.push_back({ Path::Directions::Right, 450 });
-	std::cout << "Current gold: " << gold << std::endl;
-	std::cout << "Castle health: " << castleHealth << std::endl;
 }
 
 Game::~Game()
@@ -58,12 +56,18 @@ void Game::Execution()
 			Wave += 1;
 			enemyRemains = 5 * Wave;
 			respawnDelay -= 10;
+			std::cout << std::endl;
+			std::cout << "Wave " << Wave << " started" << std::endl;
+			std::cout << "Current gold: " << gold << std::endl;
+			std::cout << "Castle health: " << castleHealth << std::endl;
+			std::cout << std::endl;
 		}
 		if (SDL_GetTicks() - lastRespawnTime >= respawnDelay && enemyRemains != 0)
 		{
 			enemyRemains -= 1;
 			enemies.push_back(new Enemy(gameTextures[2], spawnX, spawnY, paths));
 			lastRespawnTime = SDL_GetTicks();
+			std::cout << "Enemy spawned" << std::endl;
 		}
 		// Перемещение противников
 		for (int i = 0; i < enemies.size(); i++)
@@ -74,7 +78,7 @@ void Game::Execution()
 				delete enemies[i];
 				castleHealth -= 1;
 				enemies.erase(enemies.begin() + i);
-				std::cout << "Castle damaged, current health: " << castleHealth << std::endl;
+				std::cout << "Castle damaged, health remaining: " << castleHealth << std::endl;
 			}
 		}
 	}

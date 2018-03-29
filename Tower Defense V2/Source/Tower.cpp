@@ -27,6 +27,7 @@ void Tower::Upgrade(int * gold)
 			srcRect->x = tile * 50;
 			damage = 20;
 			*gold -= 50;
+			std::cout << "Tower is built, gold remaining: " << *gold << std::endl;
 		}
 	}
 }
