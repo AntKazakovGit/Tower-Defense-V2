@@ -21,7 +21,7 @@ class Enemy :
 	public Object
 {
 	// Здоровье противника
-	int health;
+	int health = 60;
 	int resX, resY;
 	int speed = 100;
 	Uint32 lastMove = SDL_GetTicks();
@@ -35,4 +35,5 @@ public:
 	bool Complete();
 	SDL_Rect GetCurrentPosition();
 	void Damaged(int damage);
+	bool Dead();
 };

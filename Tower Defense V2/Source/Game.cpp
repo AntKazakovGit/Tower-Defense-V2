@@ -71,6 +71,27 @@ void Game::Execution()
 			lastRespawnTime = SDL_GetTicks();
 			std::cout << "Enemy spawned" << std::endl;
 		}
+		for (int i = 0; i < bullets.size(); i++)
+		{
+			bullets[i]->Move();
+			if (bullets[i]->EnemyExisting())
+			{
+				if (bullets[i]->Hit())
+				{
+					delete bullets[i];
+					bullets.erase(bullets.begin() + i);
+					if (i < bullets.size())
+						i--;
+				}
+			}
+			else
+			{
+				delete bullets[i];
+				bullets.erase(bullets.begin() + i);
+				if (i < bullets.size())
+					i--;
+			}
+		}
 		// Перемещение противников
 		for (int i = 0; i < enemies.size(); i++)
 		{
@@ -82,12 +103,18 @@ void Game::Execution()
 				enemies.erase(enemies.begin() + i);
 				std::cout << "Castle damaged, health remaining: " << castleHealth << std::endl;
 			}
+			if (enemies[i]->Dead())
+			{
+				delete enemies[i];
+				gold += 20;
+				enemies.erase(enemies.begin() + i);
+			}
 		}
 		for (int i = 0; i < 16; i++)
 		{
 			for (int j = 0; j < 11; j++)
 			{
-				towers[i][j]->Shoot(enemies);
+				towers[i][j]->Shoot(enemies, &bullets);
 			}
 		}
 	}
@@ -106,6 +133,10 @@ void Game::Execution()
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		displayedObject.push_back(enemies[i]);
+	}
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		displayedObject.push_back(bullets[i]);
 	}
 }
 

@@ -34,6 +34,7 @@ class Game :
 	std::vector<Enemy*> enemies;
 	// Список башен
 	std::vector<std::vector<Tower*>> towers;
+	std::vector<Bullet*> bullets;
 public:
 	Game(SDL_Renderer * renderer);
 	~Game();

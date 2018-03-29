@@ -2,7 +2,8 @@
 
 Tower::Tower(SDL_Texture * towerTexture, SDL_Texture * bulletTexture, int x, int y, TileType tile) :
 	Object(towerTexture, x, y),
-	tile(tile)
+	tile(tile),
+	bulletTexture(bulletTexture)
 {
 	objPosition = { x, y, 50, 50 };
 	srcRect = new SDL_Rect({ tile * 50, 0, 50, 50 });
@@ -32,15 +33,21 @@ void Tower::Upgrade(int * gold)
 	}
 }
 
-void Tower::Shoot(std::vector<Enemy*> enemies)
+void Tower::Shoot(std::vector<Enemy*> enemies, std::vector<Bullet*> * bullets)
 {
-	if (tile == TileType::TowerTile)
+	if (SDL_GetTicks() - lastShoot >= shootCooldown)
 	{
-		for (int i = 0; i < enemies.size(); i++)
+		lastShoot = SDL_GetTicks();
+		if (tile == TileType::TowerTile)
 		{
-			if (sqrt(pow(enemies[i]->GetCurrentPosition().x - objPosition.x, 2) + pow(enemies[i]->GetCurrentPosition().y - objPosition.y, 2)) <= range)
+			for (int i = 0; i < enemies.size(); i++)
 			{
-//				return new Bullet();
+				if (sqrt(pow(enemies[i]->GetCurrentPosition().x - objPosition.x, 2) + pow(enemies[i]->GetCurrentPosition().y - objPosition.y, 2)) <= range)
+				{
+					std::cout << "Tower shoot enemy" << std::endl;
+					bullets->push_back( new Bullet(enemies[i], damage, bulletTexture, objPosition.x + objPosition.w / 2, objPosition.y + objPosition.h / 2));
+					return;
+				}
 			}
 		}
 	}

@@ -76,3 +76,11 @@ void Enemy::Damaged(int damage)
 		health = 0;
 }
 
+bool Enemy::Dead()
+{
+	if (health > 0)
+		return false;
+	else
+		return true;
+}
+
